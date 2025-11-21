@@ -15,6 +15,10 @@ run/main_scene="res://Map_Test.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/2dcharactercontroller/addons/bluebrains_character_controller/plugin.cfg", "res://addons/vanguard/plugin.cfg", "res://addons/walkabout/plugin.cfg")
+
 [input]
 
 right={
