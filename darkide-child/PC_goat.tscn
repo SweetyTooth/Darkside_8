@@ -1,30 +1,51 @@
 [gd_scene load_steps=5 format=3 uid="uid://dttewj3nueq3c"]
 
-[ext_resource type="Texture2D" uid="uid://c84tir08b4l8t" path="res://Krita_files/Export/PC_Sprites/Goat_ches.png" id="1_h3l4w"]
-[ext_resource type="Script" uid="uid://bdihjah1q3c8a" path="res://character_body_2d.gd" id="1_utg5y"]
+[ext_resource type="Script" uid="uid://bdihjah1q3c8a" path="res://PC_controller.gd" id="1_utg5y"]
+[ext_resource type="Texture2D" uid="uid://r352tmjfxtpc" path="res://Krita_files/Export/PC_Sprites/Overworld/Ram/Goat_ches.png" id="2_utg5y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_utg5y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_h3l4w")
+"texture": ExtResource("2_utg5y")
 }],
 "loop": true,
-"name": &"default",
+"name": &"new_animation",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_025wg"]
-size = Vector2(70, 65)
+size = Vector2(128, 128)
 
-[node name="Node2D" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="PC_goat" type="CharacterBody2D"]
 script = ExtResource("1_utg5y")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_utg5y")
+animation = &"new_animation"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 24.5)
+[node name="Camera2D" type="Camera2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_025wg")
+
+[node name="up" type="RayCast2D" parent="."]
+position = Vector2(0, -64)
+target_position = Vector2(0, -64)
+hit_from_inside = true
+
+[node name="down" type="RayCast2D" parent="."]
+position = Vector2(0, 64)
+target_position = Vector2(0, 64)
+hit_from_inside = true
+
+[node name="right" type="RayCast2D" parent="."]
+position = Vector2(64, 0)
+target_position = Vector2(64, 0)
+hit_from_inside = true
+
+[node name="left" type="RayCast2D" parent="."]
+position = Vector2(-64, 0)
+target_position = Vector2(-64, 0)
+hit_from_inside = true
